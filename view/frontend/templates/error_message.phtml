@@ -1,0 +1,38 @@
+<?php
+/**
+ * @copyright Copyright © 2021 Magepow. All rights reserved.
+ * @author    Magepow
+ * @category Magepow
+ * @copyright Copyright (c) 2014 Magepow (<https://www.magepow.com>)
+ * @license <https://www.magepow.com/license-agreement.html>
+ * @Author: magepow<support@magepow.com>
+ * @github: <https://github.com/magepow>
+ */
+?>
+<?php $_product = $block->getProduct(); ?>
+<div class="mgp-login-popup-title center">
+    <div class="mgp-login-popup-title">
+        <strong><?php echo __('You failed to add product to the comparison list.'); ?></strong>
+    </div>
+</div>
+<div class="ajaxcompare-success-box">
+    <p class="message-error">
+        <!--NOTHING-->
+    </p>
+    <h2 class="product-name"><?php echo $_product->getName() ?></h2>
+    <?php echo $block->getChildHtml('product_image', true); ?>
+    <div class="ajaxcompare-buttons">
+        <button type="button" id="ajaxcompare_btn_close_popup" class="action primary mgp-compare-close"
+                title="<?php echo __('Close') ?>">
+            <span><?php echo __('Close ') ?></span>
+            <?php
+                 if ($popupTTL = $this->helper('Magepow\AjaxCompare\Helper\Data')->getConfig("magepow_ajaxcompare/general/popupttl")) {?>
+                 (<span class="compare-autoclose-countdown"><?php echo $popupTTL ?></span>)
+                 <?php }?>
+        </button>
+        <button type="button" id="ajaxcompare_btn_to_login" class="action focus primary"
+                title="<?php echo __('Login') ?>">
+            <span><?php echo __('Login') ?></span>
+        </button>
+    </div>
+</div>

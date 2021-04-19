@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * 
+ * @category: Magepow
+ * @Copyright (c) 2014 Magepow  (<https://www.magepow.com>)
+ * @authors: Magepow (<magepow<support@magepow.com>>)
+ * @date:    2021-03-10 13:26:29
+ * @license: <http://www.magepow.com/license-agreement>
+ * @github: <https://github.com/magepow> 
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <container name="root">
+        <block class="Magento\Catalog\Block\Product\View" as="ajaxcompare_error_message"
+               template="Magepow_AjaxCompare::error_message.phtml">
+            <block class="Magento\Catalog\Block\Product\Gallery" as="product_image" template="product/image.phtml"/>
+        </block>
+    </container>
+</layout>

@@ -1,0 +1,25 @@
+<?php
+/**
+ * 
+ * @category: Magepow
+ * @Copyright (c) 2014 Magepow  (<https://www.magepow.com>)
+ * @authors: Magepow (<magepow<support@magepow.com>>)
+ * @license: <http://www.magepow.com/license-agreement>
+ * @github: <https://github.com/magepow> 
+ */
+
+?>
+<div class="mgp-compare-popup-wrapper" id="mgp-compare-popup-wrapper">
+    <a id="mgp-compare-close" class="mgp-compare-close"></a>
+    <?php echo $block->getChildHtml('ajaxcompare.popup.popup'); ?>
+</div>
+
+<style type="text/css">
+	#mgp-compare-popup-wrapper{
+	width: 100%;
+    height: 100%;
+    z-index: 1000;
+    position: absolute;
+    display: none;
+	}
+</style>

@@ -1,0 +1,18 @@
+<?php
+/**
+ * @copyright Copyright © 2021 Magepow. All rights reserved.
+ * @author    Magepow
+ * @category Magepow
+ * @copyright Copyright (c) 2014 Magepow (<https://www.magepow.com>)
+ * @license <https://www.magepow.com/license-agreement.html>
+ * @Author: magepow<support@magepow.com>
+ * @github: <https://github.com/magepow>
+ */
+
+$message = $block->getMessage();
+if (!$message) {
+    $message = __('You added this product to the comparison list');
+}
+?>
+
+<h3 class="mgp-message-successs"><?php echo $message; ?></h3>
