@@ -9,25 +9,26 @@
  * @github: <https://github.com/magepow>
  */
 /**
- * @var \Magepow\AjaxCompare\Block\Message $block
+ * @var \Magento\Catalog\Block\Product\View $block
  */
 ?>
 
-<?php $_product = $block->getProduct(); ?>
-
-
+<?php 
+$helper = $this->helper('Magepow\AjaxCompare\Helper\Data');
+$_product = $block->getProduct(); 
+?>
 <div class="mgp-compare-popup-border ajaxcompare-success-box">
     <?php echo $block->getChildHtml('ajaxcompare.message'); ?>
 
     <h2 class="product-name"><?php echo $_product->getName() ?></h2>
-    <img src="<?php echo $block->getBaseUrl().'media/catalog/product'.$_product->getImage() ;?>" alt="<?php echo $_product->getName() ?>" width="200" height="200">
+    <img src="<?php echo $helper->getBaseUrlMedia().'catalog/product/'.$_product->getImage() ;?>" alt="<?php echo $_product->getName() ?>" width="200" height="200">
     <div class="ajaxcompare-buttons">
         <button type="button" id="ajaxcompare_btn_close_popup" class="action primary mgp-compare-close"
                 title="<?php echo __('Close') ?>">
             <span><?php echo __('Close ') ?></span>
             
             <?php
-                 if ($popupTTL = $this->helper('Magepow\AjaxCompare\Helper\Data')->getConfig("magepow_ajaxcompare/general/popupttl")) {?>
+                 if ($popupTTL = $helper->getConfig("magepow_ajaxcompare/general/popupttl")) {?>
                  (<span class="compare-autoclose-countdown"><?php echo $popupTTL ?></span>)
                  <?php }?>
         </button>
@@ -38,18 +39,3 @@
         </button>
     </div>
 </div>
-
-
-<style type="text/css">
-    #mgp-compare-popup-wrapper{
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    background: rgb(235, 235, 235);
-
-}
-.mgp-compare-popup-border.ajaxcompare-success-box{
-    position: fixed;
-    margin: auto;
-}
-</style>

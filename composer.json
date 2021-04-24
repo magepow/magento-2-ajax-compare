@@ -1,9 +1,6 @@
 {
   "name": "magepow/ajaxcompare",
-  "description": "Magento 2 Ajax Compare.",
-  "require": {
-    "magepow/core": "^1.0.0"
-  },
+   "description": "Magepow Ajax Compare for Magento 2",
   "type": "magento2-module",
   "license": [
       "OSL-3.0",
@@ -22,7 +19,7 @@
           "registration.php"
       ],
       "psr-4": {
-          "Magepow\\AjaxCompare\\": ""
+          "Magepow\\Ajaxcompare\\": ""
       }
   }
 }

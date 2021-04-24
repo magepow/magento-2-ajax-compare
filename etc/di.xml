@@ -13,6 +13,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Catalog\Controller\Product\Compare\Add">
-        <plugin name="after_controller_product_compare_add" type="Magepow\AjaxCompare\Plugin\Controller\Product\Compare\Add"/>
+        <plugin name="ajax_compare_plugin" type="Magepow\AjaxCompare\Plugin\Controller\Product\Compare\Add"/>
     </type>
 </config>

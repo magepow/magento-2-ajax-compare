@@ -26,11 +26,6 @@ use Magento\Store\Model\StoreManagerInterface;
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
     /**
-     * @var
-     */
-    protected $_storeId;
-
-    /**
      * @var Registry
      */
     protected $_coreRegistry;
@@ -148,5 +143,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $result = $layout->getOutput();
         $layout->__destruct();
         return $result;
+    }
+
+    public function getBaseUrlMedia()
+    {
+       return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
     }
 }

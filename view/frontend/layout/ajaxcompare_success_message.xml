@@ -16,7 +16,6 @@
         <block class="Magento\Catalog\Block\Product\View" as="ajaxcompare_success_message"
                template="Magepow_AjaxCompare::success_message.phtml">
             <block class="Magepow\AjaxCompare\Block\Message" name="ajaxcompare.message" template="message.phtml"/>
-            <block class="Magento\Catalog\Block\Product\Gallery" as="product_image" template="product/image.phtml"/>
         </block>
     </container>
 </layout>
