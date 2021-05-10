@@ -9,7 +9,7 @@
  * @github: <https://github.com/magepow>
  */
 ?>
-<?php $_product = $block->getProduct(); ?>
+
 <div class="mgp-login-popup-title center">
     <div class="mgp-login-popup-title">
         <strong><?php echo __('You failed to add product to the comparison list.'); ?></strong>
@@ -19,8 +19,7 @@
     <p class="message-error">
         <!--NOTHING-->
     </p>
-    <h2 class="product-name"><?php echo $_product->getName() ?></h2>
-    <?php echo $block->getChildHtml('product_image', true); ?>
+
     <div class="ajaxcompare-buttons">
         <button type="button" id="ajaxcompare_btn_close_popup" class="action primary mgp-compare-close"
                 title="<?php echo __('Close') ?>">
