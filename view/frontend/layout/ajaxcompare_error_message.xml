@@ -15,7 +15,6 @@
     <container name="root">
         <block class="Magento\Catalog\Block\Product\View" as="ajaxcompare_error_message"
                template="Magepow_AjaxCompare::error_message.phtml">
-            <block class="Magento\Catalog\Block\Product\Gallery" as="product_image" template="product/image.phtml"/>
         </block>
     </container>
 </layout>
