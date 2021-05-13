@@ -37,6 +37,11 @@
                     <label>Popup Will Close After</label>
                     <validate>validate-digits validate-digits-range digits-range-0-</validate>
                 </field>
+                <field id="loader" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Show Loader</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
             </group>
     
         </section>

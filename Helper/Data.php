@@ -101,6 +101,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                 'enabled' => $this->isEnabledAjaxCompare(),
                 'ajaxCompareUrl' => $this->_getUrl('catalog/product_compare/add'),
                 'popupTTL' => $this->getConfig("magepow_ajaxcompare/general/popupttl"),
+                'showLoader' =>  (bool) $this->getConfig('magepow_ajaxcompare/general/loader')
             ],
         ];
 

@@ -19,7 +19,8 @@ define([
                 enabled: null,
                 ajaxCompareUrl: null,
                 compareBtnSelector: 'a.action.tocompare',
-                btnCloseSelector: '#ajaxcompare_btn_close_popup',               
+                btnCloseSelector: '#ajaxcompare_btn_close_popup',
+                showLoader: null               
             }
         },
 
@@ -91,8 +92,9 @@ define([
                 data: params,
                 type: 'POST',
                 dataType: 'json',
+                showLoader: self.options.ajaxCompare.showLoader,
                 beforeSend: function () {
-                    if (self.isLoaderEnabled()) {
+                    if (self.options.ajaxCompare.showLoader && self.isLoaderEnabled()) {
                         $('body').trigger(self.options.ajaxCompare.processStart);
                     }
                 },

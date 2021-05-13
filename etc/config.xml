@@ -18,6 +18,7 @@
                 <enabled>1</enabled>
                 <message>You added this product to the comparison list</message>
                 <popupttl>10</popupttl>
+                <loader>0</loader>
             </general>
         </magepow_ajaxcompare>
     </default>
