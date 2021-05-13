@@ -99,7 +99,7 @@ define([
                     }
                 },
                 success: function (res) {
-                    if (self.isLoaderEnabled()) {
+                    if (self.options.ajaxCompare.showLoader && self.isLoaderEnabled()) {
                         $('body').trigger(self.options.ajaxCompare.processStop);
                     }
                     if (res.html_popup) {

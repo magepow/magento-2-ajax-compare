@@ -21,19 +21,19 @@
             <tab>magepow</tab>
             <resource>Magepow_AjaxCompare::config_ajaxcompare</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
-                   showInStore="1">
+                   showInStore="1" >
                 <label>General</label>
                 <field id="enabled" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1"
-                       showInStore="1">
+                       showInStore="1" canRestore="1">
                     <label>Enable Ajax Compare</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="message" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
-                       showInStore="1">
+                       showInStore="1" canRestore="1">
                     <label>Message After Adding Products to Compare</label>
                 </field>
                 <field id="popupttl" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1"
-                       showInStore="1">
+                       showInStore="1" canRestore="1">
                     <label>Popup Will Close After</label>
                     <validate>validate-digits validate-digits-range digits-range-0-</validate>
                 </field>
