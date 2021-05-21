@@ -6,6 +6,7 @@
 ## Magento 2 Ajax Compare Free Extension
 
 **Ajax Compare** Ajax Compare extension for Magento 2 helps admin increase the customer experiences with many convenient features.
+
 [![Latest Stable Version](https://poser.pugx.org/magepow/ajaxcompare/v/stable)](https://packagist.org/packages/magepow/ajaxcompare)
 [![Total Downloads](https://poser.pugx.org/magepow/ajaxcompare/downloads)](https://packagist.org/packages/magepow/ajaxcompare)
 
