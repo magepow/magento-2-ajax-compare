@@ -1,20 +1,28 @@
-[![Latest Stable Version](https://poser.pugx.org/magepow/ajaxcompare/v/stable)](https://packagist.org/packages/magepow/ajaxcompare)
-[![Total Downloads](https://poser.pugx.org/magepow/ajaxcompare/downloads)](https://packagist.org/packages/magepow/ajaxcompare)
-[![Daily Downloads](https://poser.pugx.org/magepow/ajaxcompare/d/daily)](https://packagist.org/packages/magepow/ajaxcompare)
-# Magento 2 Ajax Compare
+## Magento 2 Ajax Compare - Ajax add to compare products extension by Magepow
 
-## Magento 2 Ajax Compare Free Extension
+Comparing products on the website helps customers have an overview of the price, features and characteristics of the product, thereby making the most accurate purchase decision.
 
-**Ajax Compare** extension for Magento 2 helps admin increase the customer experiences with many convenient features.
+**Ajax Compare** extension for Magento 2 helps admin increase the customer experiences with many convenient features. This module help improve product comparison feature with ajax. Customers can add products to the comparison list without reloading the page.
 
-[![Latest Stable Version](https://poser.pugx.org/magepow/ajaxcompare/v/stable)](https://packagist.org/packages/magepow/ajaxcompare)
-[![Total Downloads](https://poser.pugx.org/magepow/ajaxcompare/downloads)](https://packagist.org/packages/magepow/ajaxcompare)
-
-**See more information**:
+See more detail description: 
+- [**Magento 2 Ajax Compare**](https://magepow.com/magento-2-ajax-compare.html)
 
 - [Documentation](https://docs.alothemes.com/m2/extension/ajaxcompare/)
 
 - [Video tutorial](https://www.youtube.com/watch?v=gTemvUzrOJg&t=57s)
+
+[![Latest Stable Version](https://poser.pugx.org/magepow/ajaxcompare/v/stable)](https://packagist.org/packages/magepow/ajaxcompare)
+[![Total Downloads](https://poser.pugx.org/magepow/ajaxcompare/downloads)](https://packagist.org/packages/magepow/ajaxcompare)
+
+### Why does it nesscesary? 
+
+- Improve customer experience on magento website
+- Increase conversion rate
+- Improved user interface
+- Increase website speed, save bandwidth and reduce server requests
+- Add comparable products to the list without reloading the page
+- Unlimited products
+- Customize pop-ups
 
 ## How to use Ajax Compare extension
 Before you continue, ensure you meet the following requirements:
