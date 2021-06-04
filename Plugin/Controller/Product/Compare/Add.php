@@ -19,6 +19,7 @@ use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\App\Action\HttpPostActionInterface as HttpPostActionInterface;
+use Magento\Framework\Controller\ResultFactory;
 
 /**
  * Class Add
@@ -123,11 +124,11 @@ class Add extends \Magento\Catalog\Controller\Product\Compare\Add implements Htt
                 $this->_objectManager->get(\Magento\Catalog\Helper\Product\Compare::class)->calculate();
             }
 
-        } else {
-            $htmlPopup = $this->_ajaxCompareHelper->getErrorHtml();
-            $result['success'] = false;
-            $result['html_popup'] = $htmlPopup;
-            $subject->getResponse()->representJson($this->_jsonEncode->jsonEncode($result));
+        }
+        if (!$this->_ajaxCompareHelper->isEnabledAjaxCompare()) {
+           $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+           $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+            return $resultRedirect; 
         }
     }
 
