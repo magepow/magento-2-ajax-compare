@@ -126,9 +126,7 @@ class Add extends \Magento\Catalog\Controller\Product\Compare\Add implements Htt
 
         }
         if (!$this->_ajaxCompareHelper->isEnabledAjaxCompare()) {
-           $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-           $resultRedirect->setUrl($this->_redirect->getRefererUrl());
-            return $resultRedirect; 
+           return $proceed();
         }
     }
 
