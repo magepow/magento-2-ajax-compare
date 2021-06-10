@@ -73,20 +73,26 @@ define([
         },
 
         showPopup: function() {
-            var self = this;
+            var self = this,
+                comparePopup = $(self.options.popupWrapperSelector);
             var modaloption = {
                 type: 'popup',
                 modalClass: 'modal-popup_ajaxcompare_magepow',
                 responsive: true,
                 innerScroll: true,
-                clickableOverlay: true
+                clickableOverlay: true,
+                closed: function(){
+                   $('.modal-popup_ajaxcompare_magepow').remove();
+                }
             };
-            var callforoption = modal(modaloption, $(self.options.popupWrapperSelector));
-            $(self.options.popupWrapperSelector).modal('openModal');
+            modal(modaloption, comparePopup);
+            comparePopup.modal('openModal');
         },
 
         addCompare: function (params) {
-            var self = this;
+            var self = this, 
+                comparePopup = $(self.options.popupWrapperSelector),
+                body = $('body');
             $.ajax({
                 url: self.options.ajaxCompare.ajaxCompareUrl,
                 data: params,
@@ -95,18 +101,19 @@ define([
                 showLoader: self.options.ajaxCompare.showLoader,
                 beforeSend: function () {
                     if (self.options.ajaxCompare.showLoader && self.isLoaderEnabled()) {
-                        $('body').trigger(self.options.ajaxCompare.processStart);
+                        body.trigger(self.options.ajaxCompare.processStart);
                     }
                 },
                 success: function (res) {
                     if (self.options.ajaxCompare.showLoader && self.isLoaderEnabled()) {
-                        $('body').trigger(self.options.ajaxCompare.processStop);
+                        body.trigger(self.options.ajaxCompare.processStop);
                     }
                     if (res.html_popup) {
-                       $(self.options.popupWrapperSelector).html(res.html_popup);
+                        if (!comparePopup.length) {
+                            body.append('<div class="mgp-compare-popup-wrapper" id="mgp-compare-popup-wrapper">'+res.html_popup+'</div>');
+                        }
                         self.showPopup();                     
-                        self.autoClosePopup(self.options.popupWrapperSelector);
-                       
+                        self.autoClosePopup(self.options.popupWrapperSelector);                      
                     } else {
                         alert($t('No response from server'));
                     }

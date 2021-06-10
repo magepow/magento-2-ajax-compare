@@ -16,10 +16,5 @@
         <referenceBlock name="head.components">
             <block class="Magepow\AjaxCompare\Block\Js" name="ajaxCompareJs" as="ajaxCompareJs" ifconfig="magepow_ajaxcompare/general/enabled" />
         </referenceBlock>
-        <referenceContainer name="before.body.end">
-            <block class="Magepow\AjaxCompare\Block\Popup\Wrapper" name="ajaxcompare.popup.wrapper"
-                   template="Magepow_AjaxCompare::popup/wrapper.phtml" ifconfig="magepow_ajaxcompare/general/enabled" >
-            </block>
-        </referenceContainer>
     </body>
 </page>
