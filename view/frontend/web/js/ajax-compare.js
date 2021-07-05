@@ -18,7 +18,7 @@ define([
                 processStop: 'processStop',
                 enabled: null,
                 ajaxCompareUrl: null,
-                compareBtnSelector: 'a.action.tocompare',
+                compareBtnSelector: 'a.tocompare',
                 btnCloseSelector: '#ajaxcompare_btn_close_popup',
                 showLoader: null               
             }
