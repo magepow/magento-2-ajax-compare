@@ -21,7 +21,7 @@ $_product = $block->getProduct();
     <?php echo $block->getChildHtml('ajaxcompare.message'); ?>
 
     <h2 class="product-name"><?php echo $_product->getName() ?></h2>
-    <img src="<?php echo $helper->getBaseUrlMedia().'catalog/product/'.$_product->getImage() ;?>" alt="<?php echo $_product->getName() ?>" width="200" height="200">
+    <img src="<?php echo $helper->getBaseUrlMedia().'catalog/product/'.$_product->getImage() ;?>" alt="<?php echo $_product->getName() ?>">
     <div class="ajaxcompare-buttons">
         <button type="button" id="ajaxcompare_btn_close_popup" class="action primary mgp-compare-close"
                 title="<?php echo __('Close') ?>">
