@@ -18,15 +18,12 @@ $helper = $this->helper('Magepow\AjaxCompare\Helper\Data');
 $_product = $block->getProduct(); 
 ?>
 <div class="mgp-compare-popup-border ajaxcompare-success-box">
-    <?php echo $block->getChildHtml('ajaxcompare.message'); ?>
-
-    <h2 class="product-name"><?php echo $_product->getName() ?></h2>
     <img src="<?php echo $helper->getBaseUrlMedia().'catalog/product/'.$_product->getImage() ;?>" alt="<?php echo $_product->getName() ?>">
+    <h2 class="product-name"><?php echo $_product->getName() ?></h2>
+    <?php echo $block->getChildHtml('ajaxcompare.message'); ?>
     <div class="ajaxcompare-buttons">
-        <button type="button" id="ajaxcompare_btn_close_popup" class="action primary mgp-compare-close"
-                title="<?php echo __('Close') ?>">
+        <button type="button" id="ajaxcompare_btn_close_popup" class="action primary mgp-compare-close" title="<?php echo __('Close') ?>">
             <span><?php echo __('Close ') ?></span>
-            
             <?php
                  if ($popupTTL = $helper->getConfig("magepow_ajaxcompare/general/popupttl")) {?>
                  (<span class="compare-autoclose-countdown"><?php echo $popupTTL ?></span>)
