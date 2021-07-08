@@ -14,7 +14,6 @@ define([
             closePopupModal: '.action-close',
             processStart: 'processStart',
             processStop : 'processStop',
-            ajaxCompareUrl: null,
             addToCompareButtonSelector: '.tocompare',
             addToCompareButtonDisabledClass: 'disabled',
             addToCompareButtonTextWhileAdding: '',
