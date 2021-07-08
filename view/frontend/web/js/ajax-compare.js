@@ -3,7 +3,6 @@ define([
     'Magento_Ui/js/modal/modal',
     'mage/translate',
     'jquery/ui',
-    'mage/validation/validation',
 ], function ($, modal, $t) {
     'use strict';
 
@@ -13,38 +12,34 @@ define([
             popupWrapperSelector: '#mgp-compare-popup-wrapper',
             popupBlankSelector: '#mgp-compare-blank',
             closePopupModal: '.action-close',
-            ajaxCompare: {
-                processStart: 'processStart',
-                processStop: 'processStop',
-                enabled: null,
-                ajaxCompareUrl: null,
-                compareBtnSelector: 'a.tocompare',
-                btnCloseSelector: '#ajaxcompare_btn_close_popup',
-                showLoader: null               
-            }
+            processStart: 'processStart',
+            processStop : 'processStop',
+            ajaxCompareUrl: null,
+            addToCompareButtonSelector: '.tocompare',
+            addToCompareButtonDisabledClass: 'disabled',
+            addToCompareButtonTextWhileAdding: '',
+            addToCompareButtonTextAdded: '',
+            addToCompareButtonTextDefault: '',
+            btnCloseSelector: '#ajaxcompare_btn_close_popup',
+            showLoader: false
         },
 
          _create: function () {
-            this._bind();
+            var self = this;
+            self._init();
+            $('body').on('contentUpdated', function () {
+                self._init();
+            });
         },
 
-
-        _bind: function () {
-            if (this.options.ajaxCompare.enabled == true) this.initEvents();
-            
-        },
-
-        isLoaderEnabled: function () {
-            return (this.options.ajaxCompare.processStart && this.options.ajaxCompare.processStop);
-        },
         autoClosePopup: function (wrapper) {
             var self = this;
-             var ajaxcompare_autoclose_countdown = setInterval(function (wrapper) {
+            var autocloseCountdown = setInterval(function (wrapper) {
                     var leftTimeNode = $('body').find('#ajaxcompare_btn_close_popup .compare-autoclose-countdown');
                     var leftTime = parseInt(leftTimeNode.text()) - 1;                   
                     leftTimeNode.text(leftTime);
                     if (leftTime == 0) {
-                        clearInterval(ajaxcompare_autoclose_countdown);
+                        clearInterval(autocloseCountdown);
                         self.closePopup();
                     }
             }, 1000);
@@ -56,18 +51,16 @@ define([
             $(this.options.closePopupModal).trigger('click');
         },
 
-        initEvents: function () {
+        _init: function () {
             var self = this;
-            $('body').on('click', self.options.ajaxCompare.btnCloseSelector, function (e) {
+            $('body').on('click', self.options.btnCloseSelector, function (e) {
                 self.closePopup();
             });
 
-            $('body').on('click', this.options.ajaxCompare.compareBtnSelector, function (e) {
+            self.element.find(self.options.addToCompareButtonSelector).off('click').click(function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                var params = $(this).data('post').data;
-                params['isCompare'] = true;
-                self.addCompare(params);
+                self.addCompare($(this));
             });
 
         },
@@ -89,28 +82,29 @@ define([
             comparePopup.modal('openModal');
         },
 
-        addCompare: function (params) {
+        addCompare: function (el) {
             var self = this, 
                 comparePopup = $(self.options.popupWrapperSelector),
-                body = $('body');
+                body   = $('body'),
+                parent = el.parent(),
+                post   = el.data('post');
+            var params = post.data;
+            if(parent.hasClass(self.options.addToCompareButtonDisabledClass)) return;
             $.ajax({
-                url: self.options.ajaxCompare.ajaxCompareUrl,
+                url: post.action,
                 data: params,
                 type: 'POST',
                 dataType: 'json',
-                showLoader: self.options.ajaxCompare.showLoader,
+                showLoader: self.options.showLoader,
                 beforeSend: function () {
-                    if (self.options.ajaxCompare.showLoader && self.isLoaderEnabled()) {
-                        body.trigger(self.options.ajaxCompare.processStart);
-                    }
+                    self.disableAddToCompareButton(parent);
+                    if (self.options.showLoader) body.trigger(self.options.processStart);
                 },
                 success: function (res) {
-                    if (self.options.ajaxCompare.showLoader && self.isLoaderEnabled()) {
-                        body.trigger(self.options.ajaxCompare.processStop);
-                    }
-                    if (res.html_popup) {
+                    if (self.options.showLoader) body.trigger(self.options.processStop);
+                    if (res.popup) {
                         if (!comparePopup.length) {
-                            body.append('<div class="mgp-compare-popup-wrapper" id="mgp-compare-popup-wrapper">'+res.html_popup+'</div>');
+                            body.append('<div class="mgp-compare-popup-wrapper" id="' + self.options.popupWrapperSelector.replace(/^#/, "") +'" >'+res.popup+'</div>');
                         }
                         self.showPopup();                     
                         self.autoClosePopup(self.options.popupWrapperSelector);                      
@@ -118,8 +112,43 @@ define([
                         alert($t('No response from server'));
                     }
                 }
+            }).done(function(){
+                 self.enableAddToCompareButton(parent);
             });
         },
+
+        /**
+         * @param {String} form
+         */
+        disableAddToCompareButton: function (form) {
+            var addToCompareButtonTextWhileAdding = this.options.addToCompareButtonTextWhileAdding || $t('Adding...'),
+                addToCompareButton = $(form).find(this.options.addToCompareButtonSelector);
+
+            addToCompareButton.addClass(this.options.addToCompareButtonDisabledClass);
+            addToCompareButton.find('span').text(addToCompareButtonTextWhileAdding);
+            addToCompareButton.attr('title', addToCompareButtonTextWhileAdding);
+        },
+
+        /**
+         * @param {String} form
+         */
+        enableAddToCompareButton: function (form) {
+            var addToCompareButtonTextAdded = this.options.addToCompareButtonTextAdded || $t('Added'),
+                self = this,
+                addToCompareButton = $(form).find(this.options.addToCompareButtonSelector);
+
+            addToCompareButton.find('span').text(addToCompareButtonTextAdded);
+            addToCompareButton.attr('title', addToCompareButtonTextAdded);
+
+            setTimeout(function () {
+                var addToCompareButtonTextDefault = self.options.addToCompareButtonTextDefault || $t('Add to Compare');
+
+                addToCompareButton.removeClass(self.options.addToCompareButtonDisabledClass);
+                addToCompareButton.find('span').text(addToCompareButtonTextDefault);
+                addToCompareButton.attr('title', addToCompareButtonTextDefault);
+            }, 1000);
+        }
+
     });
 
     return $.magepow.ajaxCompare;

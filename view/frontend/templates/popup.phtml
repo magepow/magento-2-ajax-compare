@@ -9,27 +9,31 @@
  * @github: <https://github.com/magepow>
  */
 /**
- * @var \Magento\Catalog\Block\Product\View $block
+ * @var \Magento\Catalog\Block\Product\AbstractProduct $block
  */
 ?>
 
 <?php 
 $helper = $this->helper('Magepow\AjaxCompare\Helper\Data');
-$_product = $block->getProduct(); 
+if(!$helper->getConfigModule('general/enabled')) return;
+$_product = $block->getProduct();
+$imageDisplayArea = 'category_page_grid';
+$productImage = $block->getImage($_product, $imageDisplayArea);
+$message = $helper->getConfigModule('general/message');
 ?>
 <div class="mgp-compare-popup-border ajaxcompare-success-box">
     <div class="ajax-compare-image">
-        <img src="<?php echo $helper->getBaseUrlMedia().'catalog/product/'.$_product->getImage() ;?>" alt="<?php echo $_product->getName() ?>">
-        <h3 class="product-name"><?php echo $_product->getName() ?></h3>
+        <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
+           class="product photo product-item-photo"
+           tabindex="-1">
+            <?= $productImage->toHtml() ?>
+        </a>
+        <h2 class="product-name"><?php echo $_product->getName() ?></h2>
     </div>
-   
-    <?php echo $block->getChildHtml('ajaxcompare.message'); ?>
-    
+    <h3 class="mgp-message-successs"><?php echo $message ? $message : __('You added this product to the comparison list') ?></h3>
     <div class="ajaxcompare-buttons">
-        <button type="button" id="ajaxcompare_btn_close_popup" class="action primary mgp-compare-close"
-                title="<?php echo __('Close') ?>">
+        <button type="button" id="ajaxcompare_btn_close_popup" class="action primary mgp-compare-close" title="<?php echo __('Close') ?>">
             <span><?php echo __('Close ') ?></span>
-            
             <?php
                  if ($popupTTL = $helper->getConfig("magepow_ajaxcompare/general/popupttl")) {?>
                  (<span class="compare-autoclose-countdown"><?php echo $popupTTL ?></span>)
@@ -38,7 +42,7 @@ $_product = $block->getProduct();
         <button type="button" id="ajaxcompare_checkout" class="action focus primary"
                 title="<?php echo __('View Comparison') ?>"
                 onClick="window.location='<?php echo $block->getUrl('catalog/product_compare/index/'); ?>'">
-            <span><?php echo __('View Comparison List') ?></span>
+            <span><?php echo __('View Comparison') ?></span>
         </button>
     </div>
 </div>

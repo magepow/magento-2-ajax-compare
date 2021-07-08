@@ -12,12 +12,17 @@
  * @var \Magepow\AjaxCompare\Block\Js $block
  */
 ?>
-
+<?php 
+$helper = $this->helper('Magepow\AjaxCompare\Helper\Data');
+if(!$helper->getConfigModule('general/enabled')) return;
+?>
 <script type="text/x-magento-init">
 {
-    "*": {
-        "magepow/ajaxcompare"    : <?php echo $block->getAjaxCompareInitOptions(); ?>
+    "body": {
+        "magepow/ajaxcompare" : {
+            "popupTTL"       : "<?php echo $helper->getConfigModule("general/popupttl") ?>",
+            "showLoader"     : "<?php echo $helper->getConfigModule('general/loader') ?>"        
+        }
     }
 }
-
 </script>

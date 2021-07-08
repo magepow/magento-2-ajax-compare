@@ -23,131 +23,62 @@ use Magento\Store\Model\StoreManagerInterface;
  * Class Data
  * @package Magepow\AjaxCompare\Helper
  */
+
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
     /**
-     * @var Registry
+     * @var array
      */
-    protected $_coreRegistry;
+    protected $configModule;
 
     /**
-     * @var StoreManagerInterface
+     * @var \Magento\Framework\Module\Manager
      */
-    protected $_storeManager;
+    protected $moduleManager;
 
-    /**
-     * @var CustomerSession
-     */
-    protected $_customerSession;
-
-    /**
-     * @var LayoutFactory
-     */
-    protected $_layoutFactory;
-
-    /**
-     * @var EncoderInterface
-     */
-    protected $_jsonEncoder;
-
-    /**
-     * @var DecoderInterface
-     */
-    protected $_jsonDecoder;
-
-
-    /**
-     * Data constructor.
-     * @param Context $context
-     * @param StoreManagerInterface $storeManager
-     * @param Registry $coreRegistry
-     * @param CustomerSession $customerSession
-     * @param LayoutFactory $layoutFactory
-     * @param EncoderInterface $jsonEncoder
-     * @param DecoderInterface $jsonDecoder
-     */
     public function __construct(
-        Context $context,
-        StoreManagerInterface $storeManager,
-        Registry $coreRegistry,
-        CustomerSession $customerSession,
-        LayoutFactory $layoutFactory,
-        EncoderInterface $jsonEncoder,
-        DecoderInterface $jsonDecoder
-    ) {
+        \Magento\Framework\App\Helper\Context $context,
+        \Magento\Framework\Module\Manager $moduleManager
+    )
+    {
         parent::__construct($context);
-        $this->_storeManager = $storeManager;
-        $this->_coreRegistry = $coreRegistry;
-        $this->_customerSession = $customerSession;
-        $this->_layoutFactory = $layoutFactory;
-        $this->_jsonEncoder = $jsonEncoder;
-        $this->_jsonDecoder = $jsonDecoder;
-
+        $this->moduleManager = $moduleManager;
+        $this->configModule = $this->getConfig(strtolower($this->_getModuleName()));
     }
-    
-     public function getConfig($cfg='')
+
+    public function getConfig($cfg='')
     {
         if($cfg) return $this->scopeConfig->getValue( $cfg, \Magento\Store\Model\ScopeInterface::SCOPE_STORE );
         return $this->scopeConfig;
     }
 
-    /**
-     * @return string
-     */
-    public function getAjaxCompareInitOptions()
+    public function getConfigModule($cfg='', $value=null)
     {
-        $options = [
-            'ajaxCompare' => [
-                'enabled' => $this->isEnabledAjaxCompare(),
-                'ajaxCompareUrl' => $this->_getUrl('catalog/product_compare/add'),
-                'popupTTL' => $this->getConfig("magepow_ajaxcompare/general/popupttl"),
-                'showLoader' =>  (bool) $this->getConfig('magepow_ajaxcompare/general/loader'),
-            ],
-        ];
+        $values = $this->configModule;
+        if( !$cfg ) return $values;
+        $config  = explode('/', $cfg);
+        $end     = count($config) - 1;
+        foreach ($config as $key => $vl) {
+            if( isset($values[$vl]) ){
+                if( $key == $end ) {
+                    $value = $values[$vl];
+                }else {
+                    $values = $values[$vl];
+                }
+            } 
 
-        return $this->_jsonEncoder->encode($options);
+        }
+        return $value;
     }
 
-    /**
-     * @return bool
-     */
-    public function isEnabledAjaxCompare()
+    public function isEnabledModule($moduleName)
     {
-        return (bool)$this->getConfig('magepow_ajaxcompare/general/enabled');
+        return $this->moduleManager->isEnabled($moduleName);
     }
 
-    /**
-     * @return string
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    public function getSuccessHtml()
+    public function getModuleName()
     {
-        $layout = $this->_layoutFactory->create(['cacheable' => false]);
-        $layout->getUpdate()->addHandle('ajaxcompare_success_message')->load();
-        $layout->generateXml();
-        $layout->generateElements();
-        $result = $layout->getOutput();
-        $layout->__destruct();
-        return $result;
+        return $this->_getModuleName();
     }
 
-    /**
-     * @return string
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    public function getErrorHtml()
-    {
-        $layout = $this->_layoutFactory->create(['cacheable' => false]);
-        $layout->getUpdate()->addHandle('ajaxcompare_error_message')->load();
-        $layout->generateXml();
-        $layout->generateElements();
-        $result = $layout->getOutput();
-        $layout->__destruct();
-        return $result;
-    }
-
-    public function getBaseUrlMedia()
-    {
-       return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
-    }
 }
