@@ -48,7 +48,7 @@ class Add extends \Magento\Catalog\Controller\Product\Compare\Add
                 $response = [];
                 $popup    = $this->_view->getLayout()->createBlock('Magento\Catalog\Block\Product\AbstractProduct')
                                         ->setData('product', $product)
-                                        ->setTemplate('Magepow_AjaxCompare::success_message.phtml')
+                                        ->setTemplate('Magepow_AjaxCompare::popup.phtml')
                                         ->toHtml();
                 $response['success'] = true;
                 $response['popup']   = $popup;
