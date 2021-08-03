@@ -23,7 +23,7 @@ $message = $helper->getConfigModule('general/message');
 ?>
 <div class="mgp-compare-popup-border ajaxcompare-success-box">
     <div class="ajax-compare-image">
-        <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
+        <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>"
            class="product photo product-item-photo"
            tabindex="-1">
             <?= $productImage->toHtml() ?>
