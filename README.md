@@ -1,3 +1,5 @@
+[<img src="https://github.com/magepow/themeforest/blob/master/shopify/shopify_affiliate.jpg" >](https://shopify.pxf.io/VyL446)
+
 ## Magento 2 Ajax Compare - Ajax add to compare products extension by Magepow
 
 Comparing products on the website helps customers have an overview of the price, features and characteristics of the product, thereby making the most accurate purchase decision.
