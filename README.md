@@ -15,6 +15,7 @@ See more detail description:
 
 [![Latest Stable Version](https://poser.pugx.org/magepow/ajaxcompare/v/stable)](https://packagist.org/packages/magepow/ajaxcompare)
 [![Total Downloads](https://poser.pugx.org/magepow/ajaxcompare/downloads)](https://packagist.org/packages/magepow/ajaxcompare)
+[![Daily Downloads](https://poser.pugx.org/magepow/ajaxcompare/d/daily)](https://packagist.org/packages/magepow/ajaxcompare)
 
 ### Why does it nesscesary? 
 
