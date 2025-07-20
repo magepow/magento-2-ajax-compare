@@ -14,7 +14,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="head.additional">
-            <block class="Magento\Framework\View\Element\Template" name="ajax.compare.js" as="ajaxCompareJs" ifconfig="magepow_ajaxcompare/general/enabled" template="Magepow_AjaxCompare::js.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="magepow.ajaxcompare.config" as="ajaxCompareJs" ifconfig="magepow_ajaxcompare/general/enabled" template="Magepow_AjaxCompare::js.phtml"/>
         </referenceBlock>
     </body>
 </page>
