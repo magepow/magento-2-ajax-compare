@@ -29,6 +29,7 @@ define([
             $('body').on('contentUpdated', function () {
                 self._init();
             });
+            this.getAppVersion('Magepow_AjaxCompare', 'https://magepow.com/magento-2-ajax-compare.html');
         },
 
         autoClosePopup: function (wrapper) {
@@ -146,6 +147,16 @@ define([
                 addToCompareButton.find('span').text(addToCompareButtonTextDefault);
                 addToCompareButton.attr('title', addToCompareButtonTextDefault);
             }, 1000);
+        },
+
+        getAppVersion: function (appName, href) {
+            // this expression is to get the version string
+            let regx = new RegExp('.*\/(.*?)\/assets\/', 'i');
+            let result = regx.exec(href);
+            let version = result ? result[1].replace(/\D/g, '') : '1.0.0';
+            console.log(`%c ${appName} %c v${version}  %c`, "background: #555555; padding: 1px; margin-bottom: 2px; border-radius: 3px 0 0 3px; color: #fff", "background: #44cc11; padding: 1px; margin-bottom: 2px; border-radius: 0 3px 3px 0; color: #fff", "background:transparent", `🚀 ${href}`);
+
+            return version;
         }
 
     });
