@@ -16,7 +16,7 @@
         <tab id="magepow" translate="label" sortOrder="102">
             <label>Magepow</label>
         </tab>
-        <section id="magepow_ajaxcompare" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="magepow_ajaxcompare" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Ajax Compare</label>
             <tab>magepow</tab>
             <resource>Magepow_AjaxCompare::config_ajaxcompare</resource>
